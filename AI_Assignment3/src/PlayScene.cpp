@@ -33,6 +33,7 @@ void PlayScene::draw()
 		m_displayGrid();
 
 		//m_displayGridLOS();
+		
 	}
 }
 
@@ -47,6 +48,7 @@ void PlayScene::update()
 	CollisionManager::AABBCheck(m_pPlayer, m_pObstacle);
 
 	m_setGridLOS();
+
 
 	m_movePlaneToTargetNode();
 }
@@ -357,7 +359,7 @@ void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
 
-	SoundManager::Instance().playMusic("Sun", -1, 1);
+	SOMA::playSound("sound");
 
 	m_buildGrid();
 

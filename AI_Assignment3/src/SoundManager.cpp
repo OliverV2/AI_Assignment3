@@ -10,7 +10,17 @@ SoundManager::SoundManager()
 SoundManager::~SoundManager()
 = default;
 
-void SoundManager::allocateChannels(const int channels) const
+void SoundManager::Init()
+{
+	if (Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0)
+	{
+		std::cout << "Mix init success!" << std::endl;
+		panReset();
+	}
+	else
+		std::cout << "Mix init failed: ERROR - " << Mix_GetError() << std::endl;
+}
+void SoundManager::allocateChannels(const int channels) 
 {
 	Mix_AllocateChannels(channels);
 }
@@ -69,7 +79,7 @@ void SoundManager::playMusic(const std::string& id, const int loop/* = -1 */, co
 	}
 }
 
-void SoundManager::stopMusic(const int fade_out/* = 0 */) const
+void SoundManager::stopMusic(const int fade_out/* = 0 */) 
 {
 	if (Mix_PlayingMusic())
 	{
@@ -77,7 +87,7 @@ void SoundManager::stopMusic(const int fade_out/* = 0 */) const
 	}	
 }
 
-void SoundManager::pauseMusic() const
+void SoundManager::pauseMusic() 
 {
 	if (Mix_PlayingMusic())
 	{
@@ -85,7 +95,7 @@ void SoundManager::pauseMusic() const
 	}	
 }
 
-void SoundManager::resumeMusic() const
+void SoundManager::resumeMusic() 
 {
 	if (Mix_PausedMusic())
 	{
@@ -101,7 +111,7 @@ void SoundManager::playSound(const std::string& id, const int loop/* = 0 */, con
 	}	
 }
 
-void SoundManager::setMusicVolume(const int vol) const
+void SoundManager::setMusicVolume(const int vol) 
 {
 	if (vol >= 0 && vol <= 128)
 	{
@@ -109,7 +119,7 @@ void SoundManager::setMusicVolume(const int vol) const
 	}
 }
 
-void SoundManager::setSoundVolume(const int vol) const
+void SoundManager::setSoundVolume(const int vol)
 {
 	if (vol >= 0 && vol <= 128)
 	{
@@ -117,7 +127,7 @@ void SoundManager::setSoundVolume(const int vol) const
 	}	
 }
 
-void SoundManager::setAllVolume(const int vol) const
+void SoundManager::setAllVolume(const int vol) 
 {
 	setMusicVolume(vol);
 	setSoundVolume(vol);

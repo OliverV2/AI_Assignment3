@@ -48,6 +48,7 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 		if (m_pWindow != nullptr)
 		{
 			std::cout << "window creation success" << std::endl;
+			SOMA::Init(); // soundmanager initialized
 
 			// create a new SDL Renderer and store it in the Singleton
 			const auto renderer = (Config::make_resource(SDL_CreateRenderer(m_pWindow.get(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
@@ -88,8 +89,10 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 
 	std::cout << "init success" << std::endl;
 
-	SoundManager::Instance().allocateChannels(16);
-	SoundManager::Instance().setMusicVolume(25);
+	SOMA::allocateChannels(16);
+	SOMA::setMusicVolume(25);
+	SOMA::load("Sun.wav", "sound", SOUND_SFX);
+
 	
 	m_bRunning = true; // everything initialized successfully - start the main loop
 	
