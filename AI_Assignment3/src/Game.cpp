@@ -5,6 +5,7 @@
 #include "glm/gtx/string_cast.hpp"
 #include "Renderer.h"
 #include "EventManager.h"
+#include "SoundManager.h"
 
 
 Game* Game::s_pInstance = nullptr;
@@ -86,7 +87,12 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 	}
 
 	std::cout << "init success" << std::endl;
+
+	SoundManager::Instance().allocateChannels(16);
+	SoundManager::Instance().setMusicVolume(25);
+	
 	m_bRunning = true; // everything initialized successfully - start the main loop
+	
 
 	return true;
 }
@@ -95,8 +101,8 @@ void Game::start()
 {
 	m_currentSceneState = NO_SCENE;
 
-	//changeSceneState(START_SCENE);
-	changeSceneState(PLAY_SCENE);
+	changeSceneState(START_SCENE);
+	
 }
 
 bool Game::isRunning() const

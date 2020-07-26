@@ -357,6 +357,8 @@ void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
 
+	SoundManager::Instance().playMusic("Sun", -1, 1);
+
 	m_buildGrid();
 
 	m_buildClockwisePatrolPath();
