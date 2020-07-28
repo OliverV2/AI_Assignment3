@@ -109,6 +109,8 @@ void PlayScene::handleEvents()
 			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
 			m_playerFacingRight = false;
 
+			SoundManager::Instance().playSound("steps", 0, 1);
+
 			m_pPlayer->getRigidBody()->velocity = glm::vec2(-5.0f, 0.0f);
 			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
 			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
@@ -117,6 +119,8 @@ void PlayScene::handleEvents()
 		{
 			m_pPlayer->setAnimationState(PLAYER_RUN_RIGHT);
 			m_playerFacingRight = true;
+
+			SoundManager::Instance().playSound("steps", 0, 1);
 
 			m_pPlayer->getRigidBody()->velocity = glm::vec2(5.0f, 0.0f);
 			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
@@ -377,6 +381,14 @@ void PlayScene::m_movePlaneToTargetNode()
 void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
+
+
+	SoundManager::Instance().allocateChannels(16);
+	SoundManager::Instance().setMusicVolume(40);
+	SoundManager::Instance().setSoundVolume(40);
+	SoundManager::Instance().load("audio/Sun.wav", "sun", SOUND_MUSIC);
+	SoundManager::Instance().playMusic("sun", -1, 0);
+	SoundManager::Instance().load("audio/Footstep_Dirt_00.wav", "steps", SOUND_SFX);
 
 
 	m_buildGrid();

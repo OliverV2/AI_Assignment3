@@ -107,9 +107,5 @@ void StartScene::start()
 		m_pStartButton->setAlpha(255);
 	});
 	addChild(m_pStartButton);
-
-	SoundManager::Instance().load("audio/Sun.wav", "Sun", SOUND_MUSIC);
-
-	
 }
 

@@ -115,6 +115,8 @@ void SoundManager::setSoundVolume(const int vol) const
 	{
 		Mix_Volume(-1, vol);
 	}
+		Mix_Volume(1, vol);
+	}	
 }
 
 void SoundManager::setAllVolume(const int vol) const
