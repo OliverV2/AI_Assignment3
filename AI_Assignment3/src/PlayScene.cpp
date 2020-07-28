@@ -33,6 +33,7 @@ void PlayScene::draw()
 		m_displayGrid();
 
 		//m_displayGridLOS();
+		
 	}
 }
 
@@ -47,6 +48,7 @@ void PlayScene::update()
 	CollisionManager::AABBCheck(m_pPlayer, m_pObstacle);
 
 	m_setGridLOS();
+
 
 	m_movePlaneToTargetNode();
 }
@@ -121,6 +123,25 @@ void PlayScene::handleEvents()
 			SoundManager::Instance().playSound("steps", 0, 1);
 
 			m_pPlayer->getRigidBody()->velocity = glm::vec2(5.0f, 0.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
+		}
+		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
+		{
+			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
+
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, -5.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
+		}
+
+		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+		{
+			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
+
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, 5.0f);
 			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
 			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 		}
@@ -361,12 +382,14 @@ void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
 
+
 	SoundManager::Instance().allocateChannels(16);
 	SoundManager::Instance().setMusicVolume(40);
 	SoundManager::Instance().setSoundVolume(40);
 	SoundManager::Instance().load("audio/Sun.wav", "sun", SOUND_MUSIC);
 	SoundManager::Instance().playMusic("sun", -1, 0);
 	SoundManager::Instance().load("audio/Footstep_Dirt_00.wav", "steps", SOUND_SFX);
+
 
 	m_buildGrid();
 
