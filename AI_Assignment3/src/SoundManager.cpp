@@ -10,17 +10,6 @@ SoundManager::SoundManager()
 SoundManager::~SoundManager()
 = default;
 
-void SoundManager::Init()
-{
-	if (Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0)
-	{
-		std::cout << "Mix init success!" << std::endl;
-		
-	}
-	else
-		std::cout << "Mix init failed: ERROR - " << Mix_GetError() << std::endl;
-}
-
 void SoundManager::allocateChannels(const int channels) const
 {
 	Mix_AllocateChannels(channels);
@@ -124,15 +113,15 @@ void SoundManager::setSoundVolume(const int vol) const
 {
 	if (vol >= 0 && vol <= 128)
 	{
-		Mix_Volume(-1, vol);
+		Mix_Volume(1, vol);
 	}	
 }
 
-void SoundManager::setAllVolume(const int vol) const
-{
-	setMusicVolume(vol);
-	setSoundVolume(vol);
-}
+//void SoundManager::setAllVolume(const int vol) const
+//{
+//	setMusicVolume(vol);
+//	setSoundVolume(vol);
+//}
 
 void SoundManager::panLeft(const unsigned increment, const int channel)
 {
