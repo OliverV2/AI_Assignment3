@@ -87,9 +87,9 @@ bool Game::init(const char* title, const int x, const int y, const int width, co
 	}
 
 	std::cout << "init success" << std::endl;
-
+	SoundManager::Instance().Init();
 	SoundManager::Instance().allocateChannels(16);
-	SoundManager::Instance().setMusicVolume(25);
+	SoundManager::Instance().setMusicVolume(40);
 	
 	m_bRunning = true; // everything initialized successfully - start the main loop
 	

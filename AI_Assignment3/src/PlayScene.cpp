@@ -357,6 +357,9 @@ void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
 
+	SoundManager::Instance().load("audio/Sun.wav", "sun", SOUND_SFX);
+	SoundManager::Instance().playSound("sun", -1, 0);
+
 	m_buildGrid();
 
 	m_buildClockwisePatrolPath();

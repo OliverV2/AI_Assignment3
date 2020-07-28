@@ -96,12 +96,5 @@ void StartScene::start()
 		m_pStartButton->setAlpha(255);
 	});
 	addChild(m_pStartButton);
-
-	SoundManager::Instance().Init();
-
-	SoundManager::Instance().load("audio/Sun.wav", "sun", SOUND_MUSIC);
-
-
-	
 }
 
