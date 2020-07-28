@@ -60,21 +60,23 @@ void StartScene::handleEvents()
 void StartScene::start()
 {
 	const SDL_Color blue = { 0, 0, 255, 255 };
+	const SDL_Color Green = { 0, 0, 0, 255 };
 	m_pStartLabel = new Label("Oliver Ventura", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
-	m_pInstructionsLabel = new Label("101268251", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
+	m_pInstructionsLabel = new Label("101268251", "Consolas", 40, blue, glm::vec2(400.0f, 100.0f));
 	m_pInstructionsLabel->setParent(this);
 	addChild(m_pInstructionsLabel);
 
-	m_pInstructionsLabe2 = new Label("Deepankar", "Consolas", 40, blue, glm::vec2(400.0f, 170.0f));
+	m_pInstructionsLabe2 = new Label("Deepankar", "Consolas", 80, Green, glm::vec2(400.0f, 140.0f));
 	m_pInstructionsLabe2->setParent(this);
 	addChild(m_pInstructionsLabe2);
 
-	m_pInstructionsLabe3 = new Label("101276472", "Consolas", 40, blue, glm::vec2(400.0f, 200.0f));
+	m_pInstructionsLabe3 = new Label("101276472", "Consolas", 40,Green, glm::vec2(400.0f, 180.0f));
 	m_pInstructionsLabe3->setParent(this);
 	addChild(m_pInstructionsLabe3);
+
 
 	m_pInstructionsLabe4 = new Label("Click 'Start' to play", "Consolas", 40, blue, glm::vec2(400.0f, 220.0f));
 	m_pInstructionsLabe4->setParent(this);

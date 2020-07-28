@@ -122,6 +122,25 @@ void PlayScene::handleEvents()
 			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
 			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 		}
+		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_W))
+		{
+			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
+
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, -5.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
+		}
+
+		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_S))
+		{
+			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
+
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(0.0f, 5.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
+		}
 		else
 		{
 			if (m_playerFacingRight)
@@ -359,7 +378,6 @@ void PlayScene::start()
 {
 	m_bPlayerHasLOS = false;
 
-	SOMA::playSound("sound");
 
 	m_buildGrid();
 
